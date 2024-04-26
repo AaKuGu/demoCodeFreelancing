@@ -88,8 +88,8 @@ const Page = () => {
 
   return (
     <div className="w-full h-screen flex items-center justify-center px-5">
-      <div className="w-full h-[400px] border rounded-lg flex items-center justify-center ">
-        <div className="flex flex-col items-start justify-center w-[50%] h-full">
+      <div className="w-full h-[400px] border rounded-lg flex md:flex-row flex-col items-center justify-center ">
+        <div className="flex flex-col items-start justify-center md:w-[50%] w-full h-full">
           <div
             aria-label="header"
             className="flex px-5 items-center justify-between w-full gap-5 border py-2"
@@ -127,7 +127,7 @@ const Page = () => {
             })}
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center  w-[50%] h-full gap-5">
+        <div className="flex flex-col items-center justify-center  md:w-[50%] w-full h-full gap-5">
           {showCreateUpdate && (
             <div className="flex flex-col items-center justify-center  w-full h-full gap-5 ">
               <div aria-label="title" className="text-3xl w-full text-center">
