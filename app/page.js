@@ -74,6 +74,7 @@ const Page = () => {
     setUserData((prevUserData) =>
       prevUserData.filter((user) => user.uniqueId !== uniqueId)
     );
+    setTargetUserId(null);
   };
 
   const handleCardClick = (user) => {
