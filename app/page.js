@@ -87,8 +87,8 @@ const Page = () => {
   console.log("userData : ", userData);
 
   return (
-    <div className="w-full h-screen flex items-center justify-center">
-      <div className="w-full h-[400px] border rounded-lg flex items-center justify-center">
+    <div className="w-full h-screen flex items-center justify-center px-5">
+      <div className="w-full h-[400px] border rounded-lg flex items-center justify-center ">
         <div className="flex flex-col items-start justify-center w-[50%] h-full">
           <div
             aria-label="header"

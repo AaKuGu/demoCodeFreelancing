@@ -9,15 +9,19 @@ const UserCard = ({
   setGender,
 }) => {
   return (
-    <div aria-label="card" className={`${""} border`} key={d.uniqueId}>
+    <div
+      aria-label="card"
+      key={d.uniqueId}
+      className={`${""} w-full flex items-center justify-start border`}
+    >
       <div
         aria-label="leftSide"
-        className={`${""} `}
+        className={`${""} flex gap-5 w-[75%]  items-center justify-center px-5 py-2`}
         onClick={() => handleCardClick(d)}
       >
-        <div>{d.fullName}</div>
-        <div>{d.age}</div>
-        <div>{d.gender}</div>
+        <div className={`${""} w-[50%]`}>{d.fullName}</div>
+        <div className={`${""} w-[25%]`}>{d.age}</div>
+        <div className={`${""} w-[25%]`}>{d.gender}</div>
       </div>
 
       <button
@@ -28,6 +32,7 @@ const UserCard = ({
           setAge("");
           setGender("");
         }}
+        className={`${""} w-[25%]`}
       >
         Delete
       </button>
