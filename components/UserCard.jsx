@@ -1,13 +1,6 @@
 import React from "react";
 
-const UserCard = ({
-  d,
-  handleCardClick,
-  handleDelete,
-  setFullName,
-  setAge,
-  setGender,
-}) => {
+const UserCard = ({ d, handleCardClick, handleDelete }) => {
   return (
     <div
       aria-label="card"
@@ -28,9 +21,6 @@ const UserCard = ({
         type="button"
         onClick={() => {
           handleDelete(d.uniqueId);
-          setFullName("");
-          setAge("");
-          setGender("");
         }}
         className={`${""} w-[25%]`}
       >
