@@ -21,7 +21,8 @@ const Page = () => {
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [userData, setUserData] = useState([]);
-  const [targetUserId, setTargetUserId] = useState();
+  const [targetIndex, setTargetIndex] = useState();
+  console.log("🚀 ~ Page ~ targetIndex:", targetIndex);
 
   const nullifyCommonFuncs = () => {
     setAge("");
@@ -31,28 +32,20 @@ const Page = () => {
 
   const handleSave = () => {
     if (fullName !== "" && age !== "" && gender !== "") {
-      if (targetUserId) {
-        const targetIndex = userData.findIndex(
-          (item) => item.uniqueId === targetUserId
-        );
+      if (targetIndex !== null && targetIndex >= 0) {
+        // targetIndex is having a valid value, hence it's an update call
+        console.log("🚀 ~ handleSave ~ targetIndex:", targetIndex);
+        const targetData = userData[targetIndex];
 
-        if (targetIndex !== -1) {
-          const targetData = userData.find(
-            (data) => data.uniqueId === targetUserId
-          );
+        const data = [...userData];
+        data.splice(targetIndex, 1, { ...targetData, fullName, gender, age });
 
-          const dataToUpdate = { ...targetData, fullName, gender, age };
+        setUserData(data);
 
-          const data = [...userData];
-          data.splice(targetIndex, 1, dataToUpdate);
-
-          setUserData(data);
-
-          setTargetUserId(null);
-          nullifyCommonFuncs();
-        } else {
-          toast.error("User does not exist");
-        }
+        setTargetIndex(null);
+        nullifyCommonFuncs();
+      } else if (targetIndex === -1) {
+        toast.error("User does not exist");
       } else {
         const uniqueId = generateUniqueId();
         const userObject = { fullName, age, gender, uniqueId };
@@ -68,16 +61,16 @@ const Page = () => {
     setUserData((prevUserData) =>
       prevUserData.filter((user) => user.uniqueId !== uniqueId)
     );
-    setTargetUserId(null);
+    setTargetIndex(null);
     nullifyCommonFuncs();
   };
 
-  const handleCardClick = (user) => {
-    setTargetUserId(user?.uniqueId);
+  const handleCardClick = (d, i) => {
+    setTargetIndex(i);
     setShowCreateUpdate(true);
-    setFullName(user.fullName);
-    setAge(user.age);
-    setGender(user.gender);
+    setFullName(d.fullName);
+    setAge(d.age);
+    setGender(d.gender);
   };
 
   return (
@@ -97,7 +90,7 @@ const Page = () => {
                 setFullName("");
                 setAge("");
                 setGender("");
-                setTargetUserId(null);
+                setTargetIndex(null);
               }}
             >
               Add
@@ -112,7 +105,7 @@ const Page = () => {
                 <UserCard
                   key={i}
                   d={d}
-                  handleCardClick={handleCardClick}
+                  handleCardClick={() => handleCardClick(d, i)}
                   handleDelete={handleDelete}
                 />
               );
