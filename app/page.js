@@ -57,10 +57,10 @@ const Page = () => {
     }
   };
 
-  const handleDelete = (uniqueId) => {
-    setUserData((prevUserData) =>
-      prevUserData.filter((user) => user.uniqueId !== uniqueId)
-    );
+  const handleDelete = (i) => {
+    const tempData = [...userData];
+    tempData.splice(i, 1);
+    setUserData(tempData);
     setTargetIndex(null);
     nullifyCommonFuncs();
   };
@@ -106,7 +106,7 @@ const Page = () => {
                   key={i}
                   d={d}
                   handleCardClick={() => handleCardClick(d, i)}
-                  handleDelete={handleDelete}
+                  handleDelete={() => handleDelete(i)}
                 />
               );
             })}
