@@ -21,6 +21,8 @@ const Page = () => {
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [userData, setUserData] = useState([]);
+
+  //targetIndex will only be initialzed when we have to update the data
   const [targetIndex, setTargetIndex] = useState();
   console.log("🚀 ~ Page ~ targetIndex:", targetIndex);
 
